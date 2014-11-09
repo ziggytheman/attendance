@@ -5,6 +5,7 @@ include('htconfig/dbConfig.php');
 include('includes/dbaccess.php');
 //	END	Secure Connection Script
 if ($dbSuccess) {
+    $name = "";
 } else {
     $contentMsg = 'No database connection.';
 }
@@ -21,12 +22,22 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <?php
-        // put your code here
-        phpinfo();
-        
-        
-        
-        ?>
+        <form method="post" action="index.php?content=autoTardy" >
+            <div class="fieldSet">
+                <fieldset>
+                    <legend>Staff Attendance</legend>
+                    <div class="column1">
+                        <p>
+                            <label class="field" for="name">Name</label>
+                            <input type="text" name="name" id="studentId" class="textbox-150" 
+                                   autofocus onfocus="myFunction(this)" value="<?php echo $name; ?>"
+                                   />
+                        </p>
+                    </div>
+                </fieldset>
+            </div>
+            <input type="submit" value="Enter">
+            <input type="reset" value="Cancel">
+        </form>
     </body>
 </html>
