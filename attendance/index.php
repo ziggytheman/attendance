@@ -5,7 +5,7 @@ include('htconfig/dbConfig.php');
 include('includes/dbaccess.php');
 include('includes/fn_commonFunctions.php');
 include('includes/fn_insert_validations.php');
-$nameOption = createNameDropDown($dbSelected);
+$nameOption = createNameDropDown($dbSelected); 
 //	END	Secure Connection Script
 if ($dbSuccess) {
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
@@ -49,7 +49,7 @@ and open the template in the editor.
                                    />
 
                             <datalist id="names">
-<?php echo $nameOption; ?>       
+                                <?php echo $nameOption; ?>       
                             </datalist>
                         </p>
                     </div>
