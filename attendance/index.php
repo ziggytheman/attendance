@@ -60,7 +60,7 @@ and open the template in the editor.
         </form>
         <footer>
             <p><span id="footerMsg"></span></p>
-            <p><span id="userMsg"><?php echo "Welcome. Please enter your name1."; ?></span></p>
+            <p><span id="userMsg"><?php echo "Welcome. Please enter your name 1 ."; ?></span></p>
         </footer><!-- end footer -->
     </body>
 
