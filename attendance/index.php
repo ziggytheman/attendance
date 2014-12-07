@@ -16,7 +16,7 @@ if ($dbSuccess) {
         $name = clean_input($_POST["name"]);
         if (insertDetail($dbSelected, $name)) {
             $footerMsg = "Insert was successful. ";
-            header("Location: index.php");
+         //   header("Location: index.php");
         } else {
             $footerMsg = "Insert FAILED. ";
         }
