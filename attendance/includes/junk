@@ -1,0 +1,2 @@
+
+NSERT INTO att_details (details_emp_id, details_date, details_time, details_name ) VALUES ('12407', '2014-12-07', '16:07:50', 'Allgeier, T' ) 

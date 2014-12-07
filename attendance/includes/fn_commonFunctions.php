@@ -29,7 +29,7 @@ function insertDetail($dbSelected, $name) {
     $tSQLselect .= "emp_id ";
     $tSQLselect .= "FROM ";
     $tSQLselect .= "att_employee ";
-    $tSQLselect .= "where emp_name  = '" .$name ."'";
+    $tSQLselect .= "where emp_name  = '" . $name . "'";
 
     $tSQLselect_Query = mysqli_query($dbSelected, $tSQLselect);
 
@@ -38,7 +38,7 @@ function insertDetail($dbSelected, $name) {
     } else {
         return false;
     }
-    
+
     $sql_insert = "";
     $attendanceDate = date('Y-m-d');
     $attendanceTime = date("H:i:s");

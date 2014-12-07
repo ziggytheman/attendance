@@ -5,8 +5,10 @@ include('htconfig/dbConfig.php');
 include('includes/dbaccess.php');
 include('includes/fn_commonFunctions.php');
 include('includes/fn_insert_validations.php');
-$nameOption = createNameDropDown($dbSelected); 
+$nameOption = createNameDropDown($dbSelected);
 //	END	Secure Connection Script
+$footerMsg = $errorMsg = $userMsg="";
+
 if ($dbSuccess) {
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $name = "";
@@ -14,11 +16,16 @@ if ($dbSuccess) {
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $name = clean_input($_POST["name"]);
-        if (insertDetail($dbSelected, $name)) {
-            $footerMsg = "Insert was successful. ";
-         //   header("Location: index.php");
+        if (strlen($name) > 0) {
+            if (insertDetail($dbSelected, $name)) {
+                $footerMsg = "Insert was successful. ";
+                //   header("Location: index.php");
+                $name = "";
+            } else {
+                $errorMsg = "Insert Failed. Please contact Tony";
+            }
         } else {
-            $footerMsg = "Insert FAILED. ";
+            $errorMsg = "Name cannot be blank";
         }
     }
 } else {
@@ -34,7 +41,7 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Staff Attendance</title>
     </head>
     <body>
         <form method="post" action="index.php" >
@@ -45,7 +52,7 @@ and open the template in the editor.
                         <p>
                             <label class="field" for="name">Name</label>
                             <input list="names" name="name" id="name" class="textbox-150" 
-                                   autofocus
+                                   autofocus placeholder="Last name, First Initial"
                                    />
 
                             <datalist id="names">
@@ -59,14 +66,10 @@ and open the template in the editor.
             <input type="reset" value="Cancel">
         </form>
         <footer>
-            <p><span id="footerMsg"></span></p>
-            <p><span id="userMsg"><?php echo "Welcome. Please enter your name 1."; ?></span></p>
+            <p><span id="userMsg"><?php echo "Welcome. Please enter your name. Last Name, First Inital"; ?></span></p>
+            <p><span id="footerMsg"><?php echo $footerMsg ?></span></p>
+            <p><span id="errorMsg"><?php echo $errorMsg ?></span></p>
         </footer><!-- end footer -->
     </body>
 
 </html>
-<script>
-$(document).ready(function(){
-   $(footerMsg).append(footerMsg); 
-});
-</script>
