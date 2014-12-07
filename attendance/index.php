@@ -65,3 +65,8 @@ and open the template in the editor.
     </body>
 
 </html>
+<script>
+$(document).ready(function(){
+   $(footerMsg).append(footerMsg); 
+});
+</script>
