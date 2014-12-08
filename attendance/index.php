@@ -7,7 +7,7 @@ include('includes/fn_commonFunctions.php');
 include('includes/fn_insert_validations.php');
 $nameOption = createNameDropDown($dbSelected);
 //	END	Secure Connection Script
-$footerMsg = $errorMsg = $userMsg="";
+$footerMsg = $errorMsg = $userMsg = "";
 
 if ($dbSuccess) {
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
@@ -18,7 +18,7 @@ if ($dbSuccess) {
         $name = clean_input($_POST["name"]);
         if (strlen($name) > 0) {
             if (insertDetail($dbSelected, $name)) {
-                $footerMsg = "Insert was successful. ";
+                $footerMsg = $name . " has been successfully logged.";
                 //   header("Location: index.php");
                 $name = "";
             } else {
@@ -42,12 +42,21 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>Staff Attendance</title>
+        <link rel="stylesheet" type="text/css" href="css/reset.css" > 
+        <link rel="stylesheet" type="text/css" href="css/nhi.css" >
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     </head>
     <body>
+        <header>
+            <h1 id="pageHeader">Staff Attendance</h1>
+            <div id="message">
+                <p><span id="returnMsg">Welcome. Please enter your name. Last Name, First Initial</span></p>
+            </div>
+        </header> 
         <form method="post" action="index.php" >
             <div class="fieldSet">
                 <fieldset>
-                    <legend>Staff Attendance</legend>
+                    <legend>Employee Sign In</legend>
                     <div class="column1">
                         <p>
                             <label class="field" for="name">Name</label>
@@ -66,10 +75,20 @@ and open the template in the editor.
             <input type="reset" value="Cancel">
         </form>
         <footer>
-            <p><span id="userMsg"><?php echo "Welcome. Please enter your name. Last Name, First Inital"; ?></span></p>
             <p><span id="footerMsg"><?php echo $footerMsg ?></span></p>
+            <p><span id="userMsg"></span></p>
             <p><span id="errorMsg"><?php echo $errorMsg ?></span></p>
         </footer><!-- end footer -->
     </body>
 
 </html>
+<script>
+    jQuery(document).ready(function () {
+        setTimeout(function () {
+            document.getElementById('footerMsg').innerHTML = "";
+        }, 5000);
+        setTimeout(function () {
+            document.getElementById('errorMsg').innerHTML = "";
+        }, 5000);
+    });
+</script>
